@@ -1,8 +1,8 @@
 <?php
 require 'database.php';
-
+$id = $_GET["id"];
 try {
-    $stmt = $conn->prepare("SELECT * FROM users");
+    $stmt = $conn->prepare("SELECT * FROM users WHERE id=$id");
     $stmt->execute();
 
     // set the resulting array to associative
@@ -12,7 +12,6 @@ try {
     echo "Error: " . $e->getMessage();
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +43,7 @@ try {
                         <td><?php echo $user["email"] ?></td>
                         <td><?php echo $user["password"] ?></td>
                         <td><?php echo $user["ip_address"] ?></td>
-                        <td><input type="button" value="<?php echo $user["id"] ?>"></td>
+                        <td><input type="button" name="<?php echo $user["id"] ?>" value="<?php echo $user["id"] ?>"></td>
                     </tr>
                 <?php } ?>
 
