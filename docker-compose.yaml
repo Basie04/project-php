@@ -2,7 +2,7 @@ version: '3.8'
 services:
     web:
         build:
-            co remntext: .
+            context: .
             dockerfile: Dockerfile
         volumes:
             - ./site:/var/www/html
