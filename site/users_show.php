@@ -1,6 +1,6 @@
 <?php
 require 'database.php';
-$id = $_GET["id"];
+$id = $_GET["user"];
 try {
     $stmt = $conn->prepare("SELECT * FROM users WHERE id=$id");
     $stmt->execute();
@@ -43,7 +43,7 @@ try {
                         <td><?php echo $user["email"] ?></td>
                         <td><?php echo $user["password"] ?></td>
                         <td><?php echo $user["ip_address"] ?></td>
-                        <td><input type="button" name="<?php echo $user["id"] ?>" value="<?php echo $user["id"] ?>"></td>
+                        
                     </tr>
                 <?php } ?>
 

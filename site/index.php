@@ -44,7 +44,7 @@ try {
                         <td><?php echo $user["email"] ?></td>
                         <td><?php echo $user["password"] ?></td>
                         <td><?php echo $user["ip_address"] ?></td>
-                        <td><input type="button" value="<?php echo $user["id"] ?>"></td>
+                        <td><input type="submit" name="user" value="<?php echo $user["id"] ?>"></td>
                     </tr>
                 <?php } ?>
 
