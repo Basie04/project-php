@@ -1,8 +1,7 @@
 <?php
 require 'database.php';
-$id = $_GET["user"];
 try {
-    $stmt = $conn->prepare("SELECT * FROM users WHERE id=$id");
+    $stmt = $conn->prepare("SELECT * FROM users");
     $stmt->execute();
 
     // set the resulting array to associative
@@ -12,6 +11,9 @@ try {
     echo "Error: " . $e->getMessage();
 }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +27,8 @@ try {
 
 <body>
     <form action="users_show.php" method="get">
+
+
         <table border="2">
             <thead>
                 <th>id</th>
@@ -33,6 +37,7 @@ try {
                 <th>email</th>
                 <th>password</th>
                 <th>ip_address</th>
+                <th colspan="2">eddit</th>
             </thead>
             <tbody>
                 <?php foreach ($all_users as $user) { ?>
@@ -43,7 +48,10 @@ try {
                         <td><?php echo $user["email"] ?></td>
                         <td><?php echo $user["password"] ?></td>
                         <td><?php echo $user["ip_address"] ?></td>
-                        
+                        <td><a href="<?php echo ' updateUser.php?id=' . $user['id']; ?>">Update</a></td>
+                        <td><a href="<?php echo ' rmUser.php?id=' . $user["id"]; ?>">remove</a></td>
+
+
                     </tr>
                 <?php } ?>
 
