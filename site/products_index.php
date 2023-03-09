@@ -1,17 +1,18 @@
 <?php
 require 'database.php';
 
-$stmt = $conn->prepare("SELECT *, manufacturers.name as fabrikant FROM products
-JOIN manufacturers ON manufacturers.id = products.manufacturer");
+$stmt = $conn->prepare("SELECT products.id AS id, products.name AS name, products.price AS price, products.manufacturer AS manufacturer , manufacturers.manu_name as fabrikant FROM products
+JOIN manufacturers ON manufacturers.id = products.manufacturer ORDER BY products.id");
 $stmt->execute();
 
 // set the resulting array to associative
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
-
-
 ?>
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,12 +25,13 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <table>
+    <table border="2">
         <thead>
             <th>id</th>
             <th>naam</th>
             <th>prijs</th>
             <th>fabrikant</th>
+            <th>fabrikant naam</th>
         </thead>
 
         <tbody>
@@ -40,6 +42,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo $product['price']; ?></td>
                     <td><?php echo $product['manufacturer']; ?></td>
                     <td><?php echo $product['fabrikant']; ?></td>
+                    <td><a href="products_edit.php?id=<?php echo $product['id']; ?>">edit</a></td>
                 </tr>
 
             <?php } ?>
