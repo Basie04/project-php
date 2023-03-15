@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 require 'database.php';
 
 $id = $_GET['id'];
@@ -61,3 +63,4 @@ if (isset($_POST['submit']) && !empty($_POST['naamFabrikant']) && !is_null($_POS
 </body>
 
 </html>
+

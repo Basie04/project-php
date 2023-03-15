@@ -27,6 +27,13 @@ else{
     session_start();
     require "database.php";
 
+    if(!isset($_POST['username']) || !isset($_POST['password']) || empty($_POST['username']) || empty($_POST['password'])){
+        echo "1 of meerdere velden zijn niet ingevult";
+        die;
+    }
+
+
+
     $stmt = $conn->prepare("SELECT * FROM users WHERE first_name = :username AND password = :pasw LIMIT 1");
     $stmt->bindParam(":username", $_POST["username"]);
     $stmt->bindParam(":pasw", $_POST["password"]);

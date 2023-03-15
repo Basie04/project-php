@@ -31,7 +31,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php }else{ ?>
             <a href="login.php">login</a>
         <?php } ?>
-
+        
     <table border="2">
         <thead>
             <th>id</th>
@@ -49,7 +49,14 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo $product['price']; ?></td>
                     <td><?php echo $product['manufacturer']; ?></td>
                     <td><?php echo $product['fabrikant']; ?></td>
-                    <td><a href="products_edit.php?id=<?php echo $product['id']; ?>">edit</a></td>
+
+                    <?php
+                    if(isset($_SESSION['user_data']) && isset($_SESSION['user_data']['rol'])){
+                        if($_SESSION['user_data']['rol'] == "admin" && $_SESSION['user_data']['rol'] != "user"){ ?>
+                            <td><a href="products_edit.php?id=<?php echo $product['id']; ?>">edit</a></td>
+
+                    <?php }} ?>
+                    
                 </tr>
 
             <?php } ?>
