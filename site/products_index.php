@@ -1,5 +1,6 @@
 <?php
 require 'database.php';
+session_start();
 
 $stmt = $conn->prepare("SELECT products.id AS id, products.name AS name, products.price AS price, products.manufacturer AS manufacturer , manufacturers.manu_name as fabrikant FROM products
 JOIN manufacturers ON manufacturers.id = products.manufacturer ORDER BY products.id");
@@ -25,6 +26,12 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
+    <?php if(isset($_SESSION["user_data"]) && !empty($_SESSION["user_data"])){?>    
+            <a href="logout.php">logout</a>
+        <?php }else{ ?>
+            <a href="login.php">login</a>
+        <?php } ?>
+
     <table border="2">
         <thead>
             <th>id</th>
