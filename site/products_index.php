@@ -5,9 +5,12 @@ session_start();
 $stmt = $conn->prepare("SELECT products.id AS id, products.name AS name, products.price AS price, products.manufacturer AS manufacturer , manufacturers.manu_name as fabrikant FROM products
 JOIN manufacturers ON manufacturers.id = products.manufacturer ORDER BY products.id");
 $stmt->execute();
-
-// set the resulting array to associative
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+$stmt = $conn->prepare("SELECT COUNT(*) AS pro_count FROM products");
+$stmt->execute();
+$products_count = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -31,6 +34,15 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php }else{ ?>
             <a href="login.php?from=products">login</a>
         <?php } ?>
+
+        <?php 
+        echo "Aantal producten: " . $products_count['pro_count'];
+        
+        
+        
+        ?>
+
+        
         
     <table border="2">
         <thead>

@@ -4,7 +4,7 @@ if(isset($_SESSION['user_data']) && isset($_SESSION['user_data']['rol'])){
     if($_SESSION['user_data']['rol'] == "admin" && $_SESSION['user_data']['rol'] != "user"){
         require 'database.php';
 
-    
+        
 
         $stmt = $conn->prepare("SELECT * FROM products JOIN manufacturers ON manufacturers.id = products.manufacturer WHERE products.id = :id");
         $stmt->bindParam(':id', $_GET['id']);
@@ -62,7 +62,9 @@ if(isset($_SESSION['user_data']) && isset($_SESSION['user_data']['rol'])){
                     <?php } ?>
                     </select>
 
-                    <input type="submit" name="submit" value="submit">
+                    <input type="submit" name="submit" value="submit"> <br>
+                    <?php $table = "products"; ?>
+                    <a href=<?php echo "delete.php?id=" . $_GET['id'] . "&tab=" . $table?>>delete product</a>
 
                 </form>
             </body>
