@@ -34,7 +34,11 @@ if(isset($_SESSION['user_data']) && isset($_SESSION['user_data']['rol'])){
             die();
 
         }
-        else{ ?>
+        else{ 
+            $man_name = $_GET['man_name'];
+            $man_id = $_GET['man_id'];
+            
+            ?>
             <!DOCTYPE html>
             <html lang="en">
             <head>
@@ -51,7 +55,8 @@ if(isset($_SESSION['user_data']) && isset($_SESSION['user_data']['rol'])){
                     <input type="text" name="price" id="price" value="<?php echo $product['price']; ?>">
                     <label for="manufacturer">manufacturer</label>
 
-                    <select name="manufacturer" id="manufacturer">manufacturer>
+                    <select name="manufacturer" selecte id="manufacturer">
+                        <option selected hidden value="<?php echo $man_id; ?>"> <?php echo $man_name; ?></option>
                     <?php foreach($all_manufacturers as $manu){ ?>
                         <option value="<?php echo $manu['id'] ?>"><?php echo $manu['manu_name'] ?></option>
                     <?php } ?>

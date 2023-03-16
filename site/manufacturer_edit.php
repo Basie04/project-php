@@ -57,7 +57,7 @@ if (isset($_POST['submit']) && !empty($_POST['naamFabrikant']) && !is_null($_POS
 <body>
     <form action="" method="post">
         <label for="">Naam Fabrikant</label>
-        <input type="text" name="naamFabrikant" id="naamFabrikant" value="<?php echo $fabrikant['name']; ?>">
+        <input type="text" name="naamFabrikant" id="naamFabrikant" value="<?php echo $fabrikant['manu_name']; ?>">
         <input type="submit" name="submit" value="update">
     </form>
 </body>

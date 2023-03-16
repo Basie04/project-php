@@ -2,5 +2,6 @@
 session_start();
 session_destroy();
 
-header("Location: products_index.php");
+$location = $_GET['from'];
+header('Location: ' . $location . '_index.php');
 die;

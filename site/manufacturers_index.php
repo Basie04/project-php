@@ -1,5 +1,6 @@
 <?php
 require 'database.php';
+session_start();
 try {
     $stmt = $conn->prepare("SELECT * FROM manufacturers");
     $stmt->execute();
@@ -10,6 +11,7 @@ try {
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
+
 
 ?>
 
@@ -24,18 +26,28 @@ try {
 </head>
 
 <body>
+<?php if(isset($_SESSION["user_data"]) && !empty($_SESSION["user_data"])){?>    
+            <a href="logout.php?from=manufacturers">logout</a>
+        <?php }else{ ?>
+            <a href="login.php?from=manufacturers">login</a>
+        <?php } ?>
     <table border="2">
         <thead>
             <th>id</th>
             <th>name</th>
-            <th>edit</th>
         </thead>
         <tbody>
             <?php foreach ($all_manufacturer as $manufacturer) { ?>
                 <tr>
                     <td><?php echo $manufacturer['id']  ?></td>
-                    <td><?php echo $manufacturer['name']  ?></td>
-                    <td><a href="manufacturer_edit.php?id=<?php echo $manufacturer['id'] ?>">edit</a></td>
+                    <td><?php echo $manufacturer['manu_name']  ?></td>
+
+                    <?php
+                    if(isset($_SESSION['user_data']) && isset($_SESSION['user_data']['rol'])){
+                        if($_SESSION['user_data']['rol'] == "admin" && $_SESSION['user_data']['rol'] != "user"){ ?>
+                            <td><a href="manufacturer_edit.php?id=<?php echo $manufacturer['id'] ?>">edit</a></td>
+
+                    <?php }} ?>
                 </tr>
             <?php } ?>
         </tbody>

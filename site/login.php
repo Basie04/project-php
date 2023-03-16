@@ -46,8 +46,8 @@ else{
     
     $_SESSION['user_data'] = $result;
 
-
-    header('Location: products_index.php');
+    $location = $_GET['from'];
+    header('Location: ' . $location . '_index.php');
     die;
 
 

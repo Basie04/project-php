@@ -27,9 +27,9 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <?php if(isset($_SESSION["user_data"]) && !empty($_SESSION["user_data"])){?>    
-            <a href="logout.php">logout</a>
+            <a href="logout.php?from=products">logout</a>
         <?php }else{ ?>
-            <a href="login.php">login</a>
+            <a href="login.php?from=products">login</a>
         <?php } ?>
         
     <table border="2">
@@ -53,7 +53,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php
                     if(isset($_SESSION['user_data']) && isset($_SESSION['user_data']['rol'])){
                         if($_SESSION['user_data']['rol'] == "admin" && $_SESSION['user_data']['rol'] != "user"){ ?>
-                            <td><a href="products_edit.php?id=<?php echo $product['id']; ?>">edit</a></td>
+                            <td><a href="<?php echo 'products_edit.php?id=' . $product['id'] . '&man_id=' . $product['manufacturer'] . '&man_name=' . $product['fabrikant']; ?>">edit</a></td>
 
                     <?php }} ?>
                     
