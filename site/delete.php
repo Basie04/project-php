@@ -13,3 +13,4 @@ if(isset($_GET['id'])){
 
     header('Location: products_index.php');
 }
+?>
